@@ -1,13 +1,22 @@
-import os
-ls=0
-screen=[]
-while 1:
- nls=int(os.popen('ls -l key.a').read().split()[4])
- z=open('key.a')
- z.read(ls)
- fs+=z.read(nls-ls)
- z.close()
- ls=nls
+import time,sys,tty,termios,os
+class _Getch:
+    def __call__(self):
+            fd = sys.stdin.fileno()
+            old_settings = termios.tcgetattr(fd)
+            try:
+                tty.setraw(sys.stdin.fileno())
+                ch = sys.stdin.read(1)
+            finally:
+                termios.tcsetattr(fd, termios.TCSADRAIN, old_settings)
+            return ch
 
- for w in screen:
-  print('\x1b['+str(w[0])+','+str(w[1])+'H\x1b'+','.join(w[2:])+'m\u2580\x1b[0m')
+os.system('python3 draw.py &')
+inkey = _Getch()
+while 1:
+    k=inkey()
+    a=open('key.a','a')
+    a.write(k)
+    a.close()
+    if k == 'p':
+     time.sleep(0.1)
+     exit()

@@ -1,6 +1,7 @@
-a=open('2.map','w')
 for w in range(9608//256*256,(9608+256)//256*256):
  print(w,chr(w))
+1/0
+a=open('2.map','w')
 a.write(chr(9556)+chr(9552)*64+chr(9574)+chr(9552)*64+chr(9559)+'\n')
 for w in range(28):
  a.write(chr(9553)+' '*64+chr(9553)+' '*64+chr(9553)+'\n')

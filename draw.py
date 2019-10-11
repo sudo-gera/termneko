@@ -7,12 +7,12 @@ def enable(q):
  map1=map1.split('\n')
  map1=[list(w) for w in map1]
  return map1
-map=[enable('1.map'),enable('2.map')]
+maps=[enable('1.map'),enable('2.map')]
 def place(x,y,q,nmap):
- global map
+ global maps
  for w in range(len(q)):
   for e in range(len(q[w])):
-   map[nmap][x+w][y+e]=q[w][e]
+   maps[nmap][x+w][y+e]=q[w][e]
 table=enable('table')
 for w in range(5):
  for e in range(2):
@@ -20,10 +20,15 @@ for w in range(5):
 def button():
  nls=int(os.popen('ls -l key.a').read().split()[4])
  a=open('key.a')
+ global ls
  a.read(ls)
- fs+=a.read(nls-ls)
+ fs=a.read(nls-ls)
  a.close()
  ls=nls
-
- for w in screen:
-  print('\x1b['+str(w[0])+','+str(w[1])+'H\x1b'+','.join(w[2:])+'m\u2580\x1b[0m')
+ return fs
+pmap=0
+px=5
+py=5
+while 1:
+ but=button()
+ 

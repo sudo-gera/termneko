@@ -1,5 +1,11 @@
-import time,sys,tty,termios,os
+import time,sys,tty,termios,os,sys
 
+chd=sys.argv[0]
+chd=chd.split('/')[:-1]
+chd='/'.join(chd)
+if chd=='':
+ chd='.'
+os.chdir(chd)
 os.system('python3 draw.py &')
 os.system('> key.a')
 while 1:
